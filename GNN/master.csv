@@ -1,5 +1,5 @@
 ,dfg_cp,dfg_dsp,dfg_lut,dfg_ff,cdfg_cp,cdfg_dsp,cdfg_lut,cdfg_ff,dfg_cp_binary,dfg_dsp_binary,dfg_lut_binary,dfg_ff_binary,dfg_cp_numerical,dfg_dsp_numerical,dfg_lut_numerical,dfg_ff_numerical,cdfg_cp_binary,cdfg_dsp_binary,cdfg_lut_binary,cdfg_ff_binary,cdfg_cp_numerical,cdfg_dsp_numerical,cdfg_lut_numerical,cdfg_ff_numerical,cdfg_cp_all_binary,cdfg_dsp_all_binary,cdfg_lut_all_binary,cdfg_ff_all_binary,cdfg_cp_all_numerical,cdfg_dsp_all_numerical,cdfg_lut_all_numerical,cdfg_ff_all_numerical
-eval metric,rmse,ap,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse
+eval metric,rmse,mape,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse,rmse
 download_name,dfg_cp,dfg_dsp,dfg_lut,dfg_ff,cdfg_cp,cdfg_dsp,cdfg_lut,cdfg_ff,dfg_cp_binary,dfg_dsp_binary,dfg_lut_binary,dfg_ff_binary,dfg_cp_numerical,dfg_dsp_numerical,dfg_lut_numerical,dfg_ff_numerical,cdfg_cp_binary,cdfg_dsp_binary,cdfg_lut_binary,cdfg_ff_binary,cdfg_cp_numerical,cdfg_dsp_numerical,cdfg_lut_numerical,cdfg_ff_numerical,cdfg_cp_all_binary,cdfg_dsp_all_binary,cdfg_lut_all_binary,cdfg_ff_all_binary,cdfg_cp_all_numerical,cdfg_dsp_all_numerical,cdfg_lut_all_numerical,cdfg_ff_all_numerical
 version,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 url,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None
@@ -12,4 +12,4 @@ task type,regression,regression,regression,regression,regression,regression,regr
 num classes,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 additional node files,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None
 additional edge files,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None,None
-binary,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+binary,False,True,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False

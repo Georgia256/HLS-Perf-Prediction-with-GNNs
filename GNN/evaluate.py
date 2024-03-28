@@ -233,18 +233,18 @@ class Evaluator:
     
     def _eval_mape(self, y_true, y_pred):
         '''
-        Compute MAPE
+        Compute MAPE ignoring zero values in y_true
         '''
         mape_list = []
     
         for i in range(y_true.shape[1]):
-            # Replace zeros in y_true with a small value to prevent division by zero
-            min_y_true = 1e-6  # Set a small positive minimum value
-            y_true_nonzero = np.where(y_true < min_y_true, min_y_true, y_true)
-
-            
+            # Filter out zero values in y_true
+            non_zero_indices = y_true[:, i] != 0
+            y_true_nonzero = y_true[non_zero_indices, i]
+            y_pred_nonzero = y_pred[non_zero_indices, i]
+    
             # Compute MAPE
-            mape = mean_absolute_percentage_error(y_true_nonzero[:, i], y_pred[:, i])
+            mape = mean_absolute_percentage_error(y_true_nonzero, y_pred_nonzero)
     
             mape_list.append(mape)
     
@@ -252,6 +252,7 @@ class Evaluator:
             raise RuntimeError('No positively labeled data available. Cannot compute MAPE')
     
         return {'mape': sum(mape_list)/len(mape_list)}
+
 
     def _eval_acc(self, y_true, y_pred):
         acc_list = []

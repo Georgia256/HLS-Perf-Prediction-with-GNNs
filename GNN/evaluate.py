@@ -243,7 +243,7 @@ class Evaluator:
             print(y_true[is_labeled,i])
             print(y_pred[is_labeled,i])
             mape_list.append(mape)
-        print(mape)
+        print(mape_list)
     
         if len(mape_list) == 0:
             raise RuntimeError('No positively labeled data available. Cannot compute MAPE')

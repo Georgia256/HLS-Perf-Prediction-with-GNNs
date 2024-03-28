@@ -243,7 +243,7 @@ class Evaluator:
                 # ignore nan values
             is_labeled = y_true[:,i] == y_true[:,i]
             mape = mean_absolute_percentage_error(y_true[is_labeled,i], y_pred[is_labeled,i])
-
+            mape *= 100
             mape_list.append(mape)
 
         if len(mape_list) == 0:

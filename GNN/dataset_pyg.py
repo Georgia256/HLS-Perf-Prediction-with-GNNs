@@ -69,9 +69,9 @@ class PygGraphPropPredDataset(InMemoryDataset):
         if os.path.isfile(os.path.join(path, 'split_dict.pt')):
             return torch.load(os.path.join(path, 'split_dict.pt'))
 
-        train_idx = pd.read_csv(osp.join(path, 'small/train.csv.gz'), compression='gzip', header = None).values.T[0]
-        valid_idx = pd.read_csv(osp.join(path, 'small/valid.csv.gz'), compression='gzip', header = None).values.T[0]
-        test_idx = pd.read_csv(osp.join(path, 'small/test.csv.gz'), compression='gzip', header = None).values.T[0]
+        train_idx = pd.read_csv(osp.join(path, 'train.csv.gz'), compression='gzip', header = None).values.T[0]
+        valid_idx = pd.read_csv(osp.join(path, 'valid.csv.gz'), compression='gzip', header = None).values.T[0]
+        test_idx = pd.read_csv(osp.join(path, 'test.csv.gz'), compression='gzip', header = None).values.T[0]
 
         return {'train': torch.tensor(train_idx, dtype = torch.long), 'valid': torch.tensor(valid_idx, dtype = torch.long), 'test': torch.tensor(test_idx, dtype = torch.long)}
 

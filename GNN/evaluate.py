@@ -250,7 +250,7 @@ class Evaluator:
         if len(mape_list) == 0:
             raise RuntimeError('No positively labeled data available. Cannot compute MAPE')
 
-        return {'mape': sum(mape_list)/len(mape_list)}at
+        return {'mape': sum(mape_list)/len(mape_list)}
     def _eval_acc(self, y_true, y_pred):
         acc_list = []
 

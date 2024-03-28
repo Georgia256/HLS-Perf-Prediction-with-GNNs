@@ -231,26 +231,22 @@ class Evaluator:
 
         return {'rmse': sum(rmse_list)/len(rmse_list)}
     
-    def _eval_mape(self, y_true, y_pred):
+   def _eval_mape(self, y_true, y_pred):
         '''
             compute MAPE
         '''
         mape_list = []
-
+    
         for i in range(y_true.shape[1]):
-            #AUC is only defined when there is at least one positive data.
-            #if np.sum(y_true[:,i] == 1) > 0 and np.sum(y_true[:,i] == 0) > 0:
-                # ignore nan values
             is_labeled = y_true[:,i] == y_true[:,i]
             mape = mean_absolute_percentage_error(y_true[is_labeled,i], y_pred[is_labeled,i])
-
-
             mape_list.append(mape)
-
+    
         if len(mape_list) == 0:
             raise RuntimeError('No positively labeled data available. Cannot compute MAPE')
+    
+        return {'mape': sum(mape_list) / len(mape_list)}  # Return the average MAPE without multiplying by 100
 
-        return {'mape': sum(mape_list)/len(mape_list)}
     def _eval_acc(self, y_true, y_pred):
         acc_list = []
 

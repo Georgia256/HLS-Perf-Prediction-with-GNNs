@@ -231,7 +231,7 @@ class Evaluator:
 
         return {'rmse': sum(rmse_list)/len(rmse_list)}
     
-   def _eval_mape(self, y_true, y_pred):
+    def _eval_mape(self, y_true, y_pred):
         '''
             compute MAPE
         '''

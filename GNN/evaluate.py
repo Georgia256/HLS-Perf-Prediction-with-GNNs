@@ -239,11 +239,10 @@ class Evaluator:
     
         for i in range(y_true.shape[1]):
             # Replace zeros in y_true with a small value to prevent division by zero
-            y_true_nonzero = np.where(y_true[:, i] == 0, 1e-10, y_true[:, i])
-            # ignore nan values
-            is_labeled = y_true_nonzero[:,i] == y_true_nonzero[:,i]
+            y_true_nonzero = np.where(y_true[:, i] == 0, 1e-5, y_true[:, i])
+            
             # Compute MAPE
-            mape = mean_absolute_percentage_error(y_true[is_labeled,i], y_pred[is_labeled,i])
+            mape = mean_absolute_percentage_error(y_true_nonzero, y_pred[:, i])
     
             mape_list.append(mape)
     

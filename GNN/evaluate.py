@@ -241,6 +241,7 @@ class Evaluator:
             is_labeled = y_true[:,i] == y_true[:,i]
             mape = mean_absolute_percentage_error(y_true[is_labeled,i], y_pred[is_labeled,i])
             print(y_true[is_labeled,i])
+            print(y_pred[is_labeled,i])
             mape_list.append(mape)
     
         if len(mape_list) == 0:

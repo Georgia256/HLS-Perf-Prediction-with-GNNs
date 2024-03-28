@@ -233,22 +233,23 @@ class Evaluator:
     
     def _eval_mape(self, y_true, y_pred):
         '''
-            compute MAPE
+        Compute MAPE
         '''
         mape_list = []
     
         for i in range(y_true.shape[1]):
-            is_labeled = y_true[:,i] == y_true[:,i]
-            mape = mean_absolute_percentage_error(y_true[is_labeled,i], y_pred[is_labeled,i])
-            print(y_true[is_labeled,i])
-            print(y_pred[is_labeled,i])
+            # Replace zeros in y_true with a small value to prevent division by zero
+            y_true_nonzero = np.where(y_true[:, i] == 0, 1e-10, y_true[:, i])
+    
+            # Compute MAPE
+            mape = mean_absolute_percentage_error(y_true_nonzero, y_pred[:, i])
+    
             mape_list.append(mape)
-        print(mape_list)
     
         if len(mape_list) == 0:
             raise RuntimeError('No positively labeled data available. Cannot compute MAPE')
     
-        return {'mape': sum(mape_list) / len(mape_list)}  # Return the average MAPE without multiplying by 100
+        return {'mape': sum(mape_list)/len(mape_list)}
 
     def _eval_acc(self, y_true, y_pred):
         acc_list = []

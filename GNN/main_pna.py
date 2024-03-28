@@ -5,6 +5,7 @@ import torch.nn.functional as F
 from pna import Net
 from torch_geometric.utils import degree
 from torch.optim.lr_scheduler import ReduceLROnPlateau
+import os
 
 from tqdm import tqdm
 import argparse
@@ -13,6 +14,7 @@ import numpy as np
 import json
 import operator
 from functools import reduce
+import random
 
 from dataset_pyg import PygGraphPropPredDataset
 from evaluate import Evaluator
@@ -76,13 +78,13 @@ def main():
                         help='number of GNN message passing layers (default: 5)')
     parser.add_argument('--emb_dim', type=int, default=300,
                         help='dimensionality of hidden units in GNNs (default: 300)')
-    parser.add_argument('--batch_size', type=int, default=32,
+    parser.add_argument('--batch_size', type=int, default=5,
                         help='input batch size for training (default: 32)')
-    parser.add_argument('--epochs', type=int, default=300,
+    parser.add_argument('--epochs', type=int, default=100,
                         help='number of epochs to train (default: 300)')
     parser.add_argument('--num_workers', type=int, default=0,
                         help='number of workers (default: 0)')
-    parser.add_argument('--dataset', type=str, default="dfg_dsp_binary",
+    parser.add_argument('--dataset', type=str, default="dfg_dsp",
                         help='dataset name (default: lut)')
 
     parser.add_argument('--feature', type=str, default="full",
@@ -143,6 +145,7 @@ def main():
         train_perf, _, _ = eval(model, device, train_loader, evaluator)
         valid_perf, v_true,  v_pred= eval(model, device, valid_loader, evaluator)
         test_perf, t_true, t_pred = eval(model, device, test_loader, evaluator)
+        print(t_true, t_pred)
 
         print({'Train': train_perf, 'Validation': valid_perf, 'Test': test_perf})
 
@@ -155,7 +158,10 @@ def main():
 
         test_loss=test_perf[dataset.eval_metric]
         if test_loss<=np.min(np.array(test_curve)):
-            PATH='model/'+args.dataset + '_pna_layer_'+ str(args.num_layer)+'_model.pt'
+            model_directory = 'model'
+            if not os.path.exists(model_directory):
+                os.makedirs(model_directory)
+            PATH = os.path.join(model_directory, args.dataset + '_pna_layer_'+ str(args.num_layer)+'_model.pt')
             torch.save({'epoch': epoch,
                         'model_state_dict': model.state_dict(),
                         'optimizer_state_dict': optimizer.state_dict(),
@@ -176,7 +182,15 @@ def main():
     print('Best validation score: {}'.format(valid_curve[best_val_epoch]))
     print('Test score: {}'.format(test_curve[best_val_epoch]))
 
-    f = open('result/'+args.dataset + '_pna_layer_'+str(args.num_layer)+'.json', 'w')
+    #f = open('result/'+args.dataset + '_pna_layer_'+str(args.num_layer)+'.json', 'w')
+    # Check if the directory exists, if not, create it
+    result_dir = 'result'
+    if not os.path.exists(result_dir):
+        os.makedirs(result_dir)
+
+    # Open the file in the result directory
+    f = open(os.path.join(result_dir, args.dataset + '_pna_layer_'+str(args.num_layer)+'.json'), 'w')
+
     result=dict(val=valid_curve[best_val_epoch], \
         test=test_curve[best_val_epoch],train=train_curve[best_val_epoch], \
         test_pred=test_predict_value, value_pred=valid_predict_value, 

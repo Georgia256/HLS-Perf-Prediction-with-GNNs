@@ -6,7 +6,7 @@ import numpy as np
 portion = 0.01  # 50% of the original data
 
 # Define the base directory containing the dataset folders
-base_dir = "~/GNN/dataset"
+base_dir = os.path.expanduser('~/GNN/dataset')
 
 # Iterate over each dataset folder
 for dataset_folder in os.listdir(base_dir):

@@ -164,7 +164,7 @@ if __name__ == '__main__':
     # print(pyg_dataset[split_index['valid']])
     # print(pyg_dataset[split_index['test']])
 
-    pyg_dataset = PygGraphPropPredDataset(name = 'dfg_lut')
+    pyg_dataset = PygGraphPropPredDataset(name = 'dfg_dsp')
     print(pyg_dataset.num_classes)
     print(pyg_dataset[1])
     split_index = pyg_dataset.get_idx_split()

@@ -48,7 +48,7 @@ class EdgeEncoder(torch.nn.Module):
 
 if __name__ == '__main__':
     from dataset_pyg import PygGraphPropPredDataset
-    dataset = PygGraphPropPredDataset(name = 'dfg_dsp')
+    dataset = PygGraphPropPredDataset(name = 'dfg_lut')
     node_enc = NodeEncoder(2)
     edge_enc = EdgeEncoder(5)
 

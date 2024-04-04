@@ -84,7 +84,7 @@ def main():
                         help='number of epochs to train (default: 300)')
     parser.add_argument('--num_workers', type=int, default=0,
                         help='number of workers (default: 0)')
-    parser.add_argument('--dataset', type=str, default="dfg_ff",
+    parser.add_argument('--dataset', type=str, default="dfg_lut",
                         help='dataset name (default: lut)')
 
     parser.add_argument('--feature', type=str, default="full",

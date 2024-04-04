@@ -145,7 +145,7 @@ def main():
         train_perf, _, _ = eval(model, device, train_loader, evaluator)
         valid_perf, v_true,  v_pred= eval(model, device, valid_loader, evaluator)
         test_perf, t_true, t_pred = eval(model, device, test_loader, evaluator)
-        #print(t_true, t_pred)
+        print(t_true, t_pred)
 
         print({'Train': train_perf, 'Validation': valid_perf, 'Test': test_perf})
 

@@ -61,7 +61,7 @@ def read_csv_graph_raw(raw_dir, add_inverse_edge = False, additional_node_files 
     additional_node_info = {}   
     for additional_file in additional_node_files:
         #assert(additional_file[:5] == 'node_')
-        additional_file[:9] = 'node-feat'
+        additional_file[:9] = "node-feat"
         # hack for ogbn-proteins
         if additional_file == 'node_species' and osp.exists(osp.join(raw_dir, 'species.csv.gz')):
             os.rename(osp.join(raw_dir, 'species.csv.gz'), osp.join(raw_dir, 'node_species.csv.gz'))
